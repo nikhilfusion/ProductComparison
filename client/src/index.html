@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="searchApp">
+<head>
+  <meta charset="utf-8" />
+  <title>Price Comparison</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  
+</head>
+<body>
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<div ng-controller="searchController">
+		<div class="wrapper-md">
+		  	<div class="panel panel-info  m-b-s">
+		    	<div class="panel-heading">
+		      		<h1 style="text-align:center;">Product Price Comparisor</h1>
+		    	</div>
+		    </div>
+            <div class="form-group">
+			    <div class="table-responsive">
+				    <table class="table table-striped b-t b-light">
+				        <thead>
+				          	<tr>
+				            	<th style="width:25%;text-align:right;">Category</th>
+				            	<th style="width:25%;text-align:center;">
+				            		<select ng-model="search.category" ng-options="categories.code as categories.name for categories in categories">
+									<option value="">Choose a category </option>
+									</select>
+				            	</th>
+				            	<th style="width:25%;text-align:center;">
+				            		<input type="text" ng-model="search.searchText" placeholder="enter the text for searching">
+				            	</th>
+				            	<th style="width:25%;">
+				            		<button type="submit" ng-click="search(search)" class="btn btn-primary">Button</button>
+				            	</th>
+				          	</tr>
+				        </thead>
+				        <tbody ng-if="search_dtls">
+				        	<tr>
+				        		<th style="text-align:center;">Store</th>
+				        		<th style="text-align:center;">Price</th>
+				        		<th style="text-align:center;">Stock</th>
+				        		<th style="text-align:center;"></th>
+				        	</tr>	
+				        	<tr ng-repeat="store in search_dtls.stores">
+				        		<td style="text-align:center;">{{store.website}} </td>
+				        		<td style="text-align:center;">{{store.price}}</td>
+				        		<td style="text-align:center;">{{store.stock}}</td>
+				        		<td>
+				        			<img ng-src="{{store.image}}" alt="search_result" style="width:100%;height:228px;">
+				        		</td>	
+				        	</tr> 
+				        </tbody>
+				    </table>
+			    </div>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>
