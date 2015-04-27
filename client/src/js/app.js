@@ -1,32 +1,20 @@
-var app = angular.module('searchApp',[]);
+var app = angular.module('searchApp',['ngRoute']);
 
-app.controller('searchController',['$scope', '$http', 'CategoriesList', function($scope, $http, CategoriesList){
-    $scope.init = function()
-    {
-        $scope.categories = CategoriesList.categories;
-    }
-    $scope.init();
-    $scope.search = function(searchData)
-	{
-        var split = searchData.searchText.split(" ");
-        var search = split[0];
-        for(var i=1;i<split.length;i++)
-        {
-          search = search + '+' + split[i];
-        }
-      	//$http.get('http://api.pricecheckindia.com/feed/product/' + searchData.category + '/' + search + '.json?user=kiranman&key=LALWDMKWIXEDLHAW')
-      	$http.get('priceComaprison/' + searchData.category + '/' + search)
-        .success(function (data, status) {
-            for(var i=0;i<data.product.length;i++)
-            {
-                if(searchData.searchText.toUpperCase() == data.product[i].brand.toUpperCase() + ' ' + data.product[i].model.toUpperCase())
-                {    
-                    $scope.search_dtls = data.product[i];
-                }    
-            }  
-        });
-	};
-}]);
+app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'view/search-v1.html',
+        controller: 'searchController'
+      }).
+      when('/version2', {
+        templateUrl: 'view/search-v2.html',
+        controller: 'searchController'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+  }]);
 
 
 app.service('CategoriesList', [function () {
