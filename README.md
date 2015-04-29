@@ -1,7 +1,7 @@
-File upload in Hapi
+ProductComparisor
 ========================
 
-The purpose of this app is to upload file with Hapi.js, Mongodb, Angular.js.
+The purpose of this app is to compare the product price with major e-commerce websites
 
 
 ### Install an app
@@ -26,6 +26,5 @@ server/ node server.js
 
 You can see the port number in command prompt after sucessfull run
 
-You can change the settings in server/config/config.js file
 
 
