@@ -11,6 +11,10 @@ app.config(['$routeProvider',
         templateUrl: 'view/search-v2.html',
         controller: 'searchController'
       }).
+      when('/version3', {
+        templateUrl: 'view/search-v3.html',
+        controller: 'scrapController'
+      }).
       otherwise({
         redirectTo: '/'
       });

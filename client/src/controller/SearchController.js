@@ -45,15 +45,27 @@ app.controller('searchController',['$scope', '$http', 'CategoriesList', '$locati
         }
         $http.get('priceComaprisonV2/' + searchData.category + '/' + search )
         .success(function (data, status) {
-            $scope.search_dtls = null;
-            for(var i=0;i<data.product.length;i++)
+            //$scope.search_dtls = null;
+            console.log(data);
+            if(data.product.length == 1)
             {
-                if(searchData.searchText.toUpperCase() == data.product[i].brand.toUpperCase() + ' ' + data.product[i].model.toUpperCase())
-                {    
-                    $scope.search_dtls = data.product[i];
-                    $scope.searchbtn = false;
-                }
-            }  
+               $scope.prod_list = true;
+               for(var i=0;i<data.product.length;i++)
+                {
+                
+                    if(searchData.searchText.toUpperCase() == data.product[i].brand.toUpperCase() + ' ' + data.product[i].model.toUpperCase())
+                    {    
+                        $scope.search_dtls = data.product[i];
+                        $scope.searchbtn = false;
+                    }
+                }   
+            }
+            else
+            {
+                $scope.prod_list = false;
+                $scope.search_dtls = data.product;
+            }    
+            
         });
     };
 }]);

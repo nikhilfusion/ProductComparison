@@ -15,8 +15,10 @@ exports.priceComaprisonV1 = {
 
 exports.priceComaprisonV2 = {
   handler: function (request, reply) {
+    console.log('http://api.pricecheckindia.com/feed/product/' + request.params.category + '/' + request.params.product + '.json?user=kiranman&key=LALWDMKWIXEDLHAW');
     Request('http://api.pricecheckindia.com/feed/product/' + request.params.category + '/' + request.params.product + '.json?user=kiranman&key=LALWDMKWIXEDLHAW', function (error, response, body) {
       if (!error && response.statusCode == 200) {
+        console.log(body);
         return reply(body);
       }
     })
